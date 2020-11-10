@@ -1,0 +1,30 @@
+... and also there is an option to do nothing with deadlocks,
+which is good because does not cause computational overhead
+
+
+Recovery - to kill process, to roll back, to do preemption
+To kill is sometimes not desirable and not possible without some permissions
+To roll back we would need to keep state of "previous checkpoint",
+which might be space consuming + copying content can be time-consuming (but that't negligible I think, given that deadlocks have small probability)
+To do preemption is also sometimes not possible, and in such cases it's analogous to rolling back
+
+Prevention - prevent one of the following:
+1) mutual exclusion
+2) hold & wait
+3) no preemption
+4) circular wait
+
+When it is possible to eliminate these conditions, it's nice, but it is not always the case
+
+In order to detect circular wait, it is need to apply some algorithms and keep necessary data
+Eliminate mutual exclusion is also sometimes not possible, for example in reading & writing the same memory mutex condition is necessary
+In order to eliminate hold&wait condition, extra effort in programming should be done
+ - to guarantee somehow that if resourse is not utilized, then it should be freed
+
+
+Avoidance technique is expressed in banking algotithm
+It adds computational overhead of O(p^2*r), where p - precesses, r - resourses
+It is not really good, but somehow it guarantees that deadlock will not occur
+as all other techniques 
+
+Choice of approach of dealing with deadlock should be done depending on circumstances 
