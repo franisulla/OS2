@@ -1,0 +1,40 @@
+
+copy with 8 bytes
+real	0m0,005s
+user	0m0,003s
+sys	0m0,002s
+
+copy with 128 bytes
+real	0m0,003s
+user	0m0,002s
+sys	0m0,001s
+
+copy with 1024 bytes
+real	0m0,003s
+user	0m0,001s
+sys	0m0,001s
+
+copy with 8 bytes with syncronization
+real	0m5,906s
+user	0m0,000s
+sys	0m0,348s
+
+copy with 128 bytes with syncronization
+real	0m0,384s
+user	0m0,005s
+sys	0m0,020s
+
+copy with 1024 bytes with syncronization
+real	0m0,056s
+user	0m0,003s
+sys	0m0,003s
+
+
+Explanation:
+
+greater buf size means less segmentation of file that is to be copied
+so here we choose between time and some stealing of cpu cycles
+
+when syncronization is on, the dependency of time on number of segments is same:
+more segments => more time
+but coefficient of proportinality is larger.
